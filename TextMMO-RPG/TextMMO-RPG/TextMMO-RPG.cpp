@@ -284,7 +284,7 @@ void Fighting() {
             cout << "Invalid choice. Please try again.\n";
         }
 
-    } while (enemy.getHp() > 0 && player.getHp() > 0);
+    } while (enemy.getHp() >= 0 || player.getHp() >= 0);
 }
 void enemyAtack() {
     int playerHp = player.getHp();

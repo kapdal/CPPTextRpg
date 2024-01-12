@@ -1,6 +1,1 @@
-﻿  TextMMO-RPG.cpp
-C:\Users\kapdal\Desktop\textRPG\TextMMO-RPG\TextMMO-RPG\TextMMO-RPG.cpp(266,34): warning C4244: "=": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\kapdal\Desktop\textRPG\TextMMO-RPG\TextMMO-RPG\TextMMO-RPG.cpp(270,33): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-C:\Users\kapdal\Desktop\textRPG\TextMMO-RPG\TextMMO-RPG\TextMMO-RPG.cpp(290,18): warning C4244: "inicjowanie": konwersja z "float" do "int", możliwa utrata danych
-C:\Users\kapdal\Desktop\textRPG\TextMMO-RPG\TextMMO-RPG\TextMMO-RPG.cpp(292,27): warning C4244: "argument": konwersja z "int" do "float", możliwa utrata danych
-  TextMMO-RPG.vcxproj -> C:\Users\kapdal\Desktop\textRPG\TextMMO-RPG\Debug\TextMMO-RPG.exe
+﻿  TextMMO-RPG.vcxproj -> C:\Users\kapdal\Desktop\textRPG\TextMMO-RPG\Debug\TextMMO-RPG.exe
