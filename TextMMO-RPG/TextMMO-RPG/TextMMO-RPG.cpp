@@ -307,7 +307,7 @@ void Fighting() {
             cout << "Invalid choice. Please try again.\n";
         }
 
-    } while (enemy.getHp() >= 0 || player.getHp() >= 0);
+    } while (enemy.getHp() >= 0 || player.getHp() >= 0);   /// jeden bool co sprawdza bo nie dziala??
 }
 void enemyAtack() {
     int playerHp = player.getHp();
