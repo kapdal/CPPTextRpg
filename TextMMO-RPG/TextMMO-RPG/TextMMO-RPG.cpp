@@ -7,36 +7,20 @@ using namespace std;
 class character {
 private:
     string name;
-    int level;
-    int xp;
-    int xpToLvl;
     float maxHp;
     float hp;
     int maxManaPoints;
     int manaPoints;
-    int strenght;
+    int strength;  
     int agility;
-    int inteligence;
+    int intelligence;  
     int vitality;
     int dexterity;
-    float money;
-    list<string> itemsList;
+    //list<string> itemsList;
 
 public:
     string getName() const {
         return name;
-    }
-
-    int getLevel() const {
-        return level;
-    }
-
-    int getXp() const {
-        return xp;
-    }
-
-    int getXpToLvl() const {
-        return xpToLvl;
     }
 
     float getMaxHp() const {
@@ -56,7 +40,7 @@ public:
     }
 
     int getStrenght() const {
-        return strenght;
+        return strength;
     }
 
     int getAgility() const {
@@ -64,7 +48,7 @@ public:
     }
 
     int getInteligence() const {
-        return inteligence;
+        return intelligence;
     }
 
     int getVitality() const {
@@ -75,28 +59,8 @@ public:
         return dexterity;
     }
 
-    const list<string>& getItemsList() const {
-        return itemsList;
-    }
-
-    float getMoney() {
-        return money;
-    }
-
     void setName(const string& newName) {
         name = newName;
-    }
-
-    void setLevel(int newLevel) {
-        level = newLevel;
-    }
-
-    void setXp(int newXp) {
-        xp = newXp;
-    }
-
-    void setXpToLvl(int newxpToLvl) {
-        xpToLvl = newxpToLvl;
     }
 
     void setMaxHp(float newMaxHp) {
@@ -116,7 +80,7 @@ public:
     }
 
     void setStrenght(int newStrenght) {
-        strenght = newStrenght;
+        strength = newStrenght;
     }
 
     void setAgility(int newAgility) {
@@ -124,7 +88,7 @@ public:
     }
 
     void setInteligence(int newInteligence) {
-        inteligence = newInteligence;
+        intelligence = newInteligence;
     }
 
     void setVitality(int newVitality) {
@@ -135,19 +99,84 @@ public:
         dexterity = newDexterity;
     }
 
-    void addItemToList(const string& newItem) {
-        itemsList.push_back(newItem);
+    character() {
+        name = "Default";
+        maxHp = 5;
+        hp = 5;
+        maxManaPoints = 5;
+        manaPoints = 5;
+        strength = 1;
+        agility = 1;
+        intelligence = 1;
+        vitality = 1;
+        dexterity = 1;
     }
+};
+class Player : public character {
+private:
+    float money;
+    list<string> itemsList;
+    int level;
+    int xp;
+    int xpToLvl;
+
+public:
+    float getMoney() const {
+        return money;
+    }
+
     void setMoney(float newMoney) {
         money = newMoney;
     }
+
+    const list<string>& getItemsList() const {
+        return itemsList;
+    }
+
+    void addItem(const string& item) {
+        itemsList.push_back(item);
+    }
+
+    void removeItem(const string& item) {
+        itemsList.remove(item);
+    }
+
+    int getLevel() const {
+        return level;
+    }
+
+    void setLevel(int newLevel) {
+        level = newLevel;
+    }
+
+    int getXp() const {
+        return xp;
+    }
+
+    void setXp(int newXP) {
+        xp = newXP;
+    }
+
+    int getXpToLvl() const {
+        return xpToLvl;
+    }
+
+    void setXpToLvl(int newXpToLvl) {
+        xpToLvl = newXpToLvl;
+    }
+    Player(){
+    level = 1;
+    xp = 0;
+    xpToLvl = 2;
+    money = 0.0;
+        }
 };
 
-character player;
+//Player player;
 character enemy;
 void playerInfo();
 void enemyInfo();
-void CreatePlayer();
+//void CreatePlayer();
 void CreateEnemy();
 void Fighting();
 void fightMenu();
@@ -162,10 +191,13 @@ void hospitalMenu();
 void hospital();
 void preyToLord();
 
+Player player;
 int main(int argc, char** argv)
 {
-    CreatePlayer();
-    //playerInfo();
+    string playerName;
+    cout << "What is your name?" << endl;
+    getline(cin, playerName);
+    player.setName(playerName);
     CreateEnemy();
     int choice;
 
@@ -175,17 +207,25 @@ int main(int argc, char** argv)
 
             switch (choice) {
             case 1:
+                system("CLS");
                 Fighting();
                 break;
 
             case 2:
+                system("CLS");
                 city();
                 break;
+            case 3:
+                system("CLS");
+                playerInfo();
+                break;
             case 0:
+                system("CLS");
                 cout << "Exiting the program.\n";
                 break;
 
             default:
+                system("CLS");
                 cout << "Invalid choice. Please try again.\n";
             }
 
@@ -193,7 +233,6 @@ int main(int argc, char** argv)
 
         return 0;
     }
-
 void playerInfo() {
     cout << "Name: " << player.getName() << endl;
     cout << "Level: " << player.getLevel() << endl;
@@ -206,30 +245,9 @@ void playerInfo() {
     cout << "Vitality: " << player.getVitality() << endl;
     cout << "Dexterity: " << player.getDexterity() << endl;
 }
-void CreatePlayer() {
-    string playerName;
-    cout << "What is your name?" << endl;
-    getline(cin, playerName);
-    player.setName(playerName);
-    player.setLevel(1);
-    player.setXp(0);
-    player.setXpToLvl(2);
-    player.setHp(5);
-    player.setMaxHp(5);
-    player.setManaPoints(5);
-    player.setMaxManaPoints(5);
-    player.setStrenght(1);
-    player.setAgility(1);
-    player.setInteligence(1);
-    player.setVitality(1);
-    player.setDexterity(1);
-    player.setMoney(0);
-}
 void CreateEnemy() {
     string enemyName = "enemy";
     enemy.setName(enemyName);
-    enemy.setLevel(player.getLevel());
-    enemy.setXp(0);
     enemy.setHp(3);
     enemy.setMaxHp(3);
     enemy.setManaPoints(player.getManaPoints());
@@ -241,8 +259,9 @@ void CreateEnemy() {
     enemy.setDexterity(player.getDexterity());
 }
 void enemyInfo() {
+    
     cout << "Name: " << enemy.getName() << endl;
-    cout << "Level: " << enemy.getLevel() << endl;
+    //cout << "Level: " << enemy.getLevel() << endl;
     cout << "Hp: " << enemy.getHp() << "/" << enemy.getMaxHp() << endl;
     cout << "Mana: " << enemy.getManaPoints() << "/" << enemy.getMaxManaPoints() << endl;
     cout << "Strenght: " << enemy.getStrenght() << endl;
@@ -263,6 +282,7 @@ void Fighting() {
 
         switch (fightChoice) {
         case 1:
+            system("cls");
             enemyHp = enemy.getHp();
             dmg = player.getStrenght();
             enemy.getHp();
@@ -273,14 +293,17 @@ void Fighting() {
             break;
 
         case 2:
+            system("cls");
             enemyInfo();
             break;
 
         case 3:
+            system("cls");
             return;
             break;
 
         default:
+            system("cls");
             cout << "Invalid choice. Please try again.\n";
         }
 
@@ -293,13 +316,16 @@ void enemyAtack() {
     cout << "Your Hp: " << player.getHp() << "/" << player.getMaxHp() << endl;
 }
 void Menu() {
+    
     cout << "Where u wanna go?\n";
     cout << "1. Fight with monsters\n";
     cout << "2. City\n";
+    cout << "3. See your stats\n";
     cout << "0. Exit\n";
     cout << "Enter your choice: ";
 }
 void cityMenu() {
+    
     cout << "Where u wanna go?\n";
     cout << "1. Shop\n";
     cout << "2. Blacksmith\n";
@@ -319,45 +345,55 @@ void city() {
 
         switch (cityChoice) {
         case 1:
+            system("cls");
             shop();
             break;
 
         case 2:
+            system("cls");
             blacksmith();
             break;
 
         case 3:
+            system("cls");
             magicShop();
             break;
 
         case 4:
+            system("cls");
             hospital();
             break;
 
         case 0:
+            system("cls");
             cout << "Back\n";
             break;
 
         default:
+            system("cls");
             cout << "Invalid choice. Please try again.\n";
         }
 
     } while (cityChoice != 0);
 }
 void blacksmith() {
+    
     cout << "Comming soon.\n";
 }
 void magicShop() {
+    
     cout << "Comming soon.\n";
 }
 void shop() {
+    
     cout << "Comming soon.\n";
 }
 void hospitalMenu() {
-        cout << "What you wanna do\n";
-        cout << "1. Prey\n";
-        cout << "0. Back\n";
-        cout << "Enter your choice: ";
+   
+    cout << "What you wanna do\n";
+    cout << "1. Prey\n";
+    cout << "0. Back\n";
+    cout << "Enter your choice: ";
     }
 void hospital() {
 int prey;
@@ -369,14 +405,17 @@ int prey;
 
         switch (prey) {
         case 1:
+            system("cls");
             preyToLord();
             break;
 
         case 0:
+            system("cls");
             cout << "Back\n";
             break;
 
         default:
+            system("cls");
             cout << "Invalid choice. Please try again.\n";
         }
 
@@ -385,9 +424,11 @@ int prey;
 void preyToLord() {
     if (player.getHp() < player.getMaxHp())
         player.setHp(player.getHp() + 1);
+    
     cout << "God blessed you." << endl;
 }
 void fightMenu() {
+    
     cout << "What do you want to do?" << endl;
     cout << "1. Attack" << endl;
     cout << "2. Check enemy stats" << endl;
